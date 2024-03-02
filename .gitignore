@@ -28,7 +28,7 @@ build/Release
 
 # Dependency directories
 node_modules
-client/node_modules
+client.node_modules
 **/node_modules
 api/node_modules
 jspm_packages
@@ -42,4 +42,3 @@ jspm_packages
 
 #Excluding build directory
 public/
-.env
