@@ -1,4 +1,16 @@
 import express from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
+
+mongoose.connect(process.env.MONGO).then(() => {
+  try {
+    console.log("connected to MongoDB");
+  } catch (error) {
+    console.log(err);
+  }
+});
+
 const app = express();
 const port = 3000;
 
