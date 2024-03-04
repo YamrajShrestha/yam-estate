@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function SignUp() {
@@ -12,6 +12,7 @@ export default function SignUp() {
       [e.target.id]: e.target.value,
     });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -24,9 +25,10 @@ export default function SignUp() {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
+      console.log(data);
       if (data.success === false) {
-        setError(data.message);
         setLoading(false);
+        setError(data.message);
         return;
       }
       setLoading(false);
@@ -36,41 +38,40 @@ export default function SignUp() {
       setLoading(false);
       setError(error.message);
     }
-
-    console.log(data);
   };
-  console.log(formData);
+  
   return (
     <>
-      <div className="max-w-lg mx-auto p-3">
-        <h1 className="text-3xl text-center font-semibold my-7">SignUp</h1>
+      <div className="p-3 max-w-lg mx-auto">
+        <h1 className="text-3xl text-center font-semibold my-7">Sign Up</h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
             type="text"
+            placeholder="username"
             className="border p-3 rounded-lg"
             id="username"
-            placeholder="username"
             onChange={handleChange}
           />
           <input
             type="email"
+            placeholder="email"
             className="border p-3 rounded-lg"
             id="email"
-            placeholder="email"
             onChange={handleChange}
           />
           <input
             type="password"
+            placeholder="password"
             className="border p-3 rounded-lg"
             id="password"
-            placeholder="password"
             onChange={handleChange}
           />
+
           <button
             disabled={loading}
             className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
           >
-            {loading ? "Loading..." : "sign Up"}
+            {loading ? "Loading..." : "Sign Up"}
           </button>
         </form>
         <div className="flex gap-2 mt-5">
